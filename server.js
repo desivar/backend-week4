@@ -10,9 +10,8 @@ const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
 const expressLayouts = require("express-ejs-layouts")
-const baseController = require("./controllers/baseController") // Keep this
-// Also need to require utilities since handleErrors is used
-const utilities = require("./utilities/") // <--- ADD THIS LINE if not present
+const baseController = require("./controllers/baseController") 
+const utilities = require("./utilities/") 
 
 /* ***********************
  * View Engine and Templates
