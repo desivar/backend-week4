@@ -39,12 +39,12 @@ invCont.buildByInventoryId = async function (req, res, next) {
 * **************************** */
 invCont.buildAddInventory = async function (req, res, next) {
     let nav = await utilities.getNav();
-    const classificationSelect = await utilities.buildClassificationList();
+    const classSelect = await utilities.buildClassificationList(); // <--- Changed here
     res.render("./inventory/add-inventory", {
         title: "Add New Vehicle",
         nav,
         errors: null,
-        classificationSelect,
+        classSelect, // <--- Changed here
     });
 };
 /* *****************************
