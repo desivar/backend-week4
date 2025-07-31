@@ -1,13 +1,11 @@
 const pool = require("../database/")
 
-/*****************************
- * Get all classification data
- *************************** */
 async function getClassifications() {
     try {
         return await pool.query("SELECT * FROM public.classification ORDER BY classification_name")
     } catch (error) {
-        return error.message
+        console.error("getClassifications error: " + error)
+        // No return statement here
     }
 }
 
