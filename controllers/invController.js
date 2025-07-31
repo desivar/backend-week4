@@ -48,7 +48,6 @@ invCont.buildInvManagement = async function (req, res, next) {
         classSelect,
     });
 };
-
 /* ***************************** 
  *  Build add classification page 
  * **************************** */
