@@ -7,6 +7,101 @@ Util.buildClassificationList = async function (classification_id = null) {
   let data = await invModel.getClassifications()
   // ... (rest of your buildClassificationList code)
   return classificationList
+
+}
+/* ****************************************
+ * Builds the classification grid
+ * **************************************** */
+Util.buildClassificationGrid = async function(data){
+  let grid
+  if(data.length > 0){
+    grid = '<ul id="inv-display">'
+    data.forEach(vehicle => {
+      grid += '<li>'
+      grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
+      + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
+      + 'details"><img src="' + vehicle.inv_thumbnail 
+      + '" alt="Image of ' + vehicle.inv_make + ' ' + vehicle.inv_model 
+      + ' on CSE Motors" /></a>'
+      grid += '<div class="namePrice">'
+      grid += '<h2>'
+      grid += '<a href="../../inv/detail/' + vehicle.inv_id + '" title="View ' 
+      + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">'
+      + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
+      grid += '</h2>'
+      grid += '<span>$' + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>'
+      grid += '</div>'
+      grid += '</li>'
+    })
+    grid += '</ul>'
+  } else { 
+    grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+  }
+  return grid
+}
+
+/* **************************************
+* Build the classification view HTML
+* ************************************ */
+Util.buildClassificationGrid = async function(data){
+  let grid
+  if(data.length > 0){
+    grid = '<ul id="inv-display">'
+    data.forEach(vehicle => { 
+      grid += '<li>'
+      grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
+      + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
+      + 'details"><img src="' + vehicle.inv_thumbnail 
+      +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
+      +' on CSE Motors" ></a>'
+      grid += '<div class="namePrice">'
+      grid += '<hr >'
+      grid += '<h2>'
+      grid += '<a href="../../inv/detail/' + vehicle.inv_id +'" title="View ' 
+      + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
+      + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
+      grid += '</h2>'
+      grid += '<span>$' 
+      + '<b>' + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + ' </b>' + '</span>'
+      grid += '</div>'
+      grid += '</li>'
+    })
+    grid += '</ul>'
+  } else { 
+    grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+  }
+  return grid
+}
+
+
+/* **************************************
+* Build the inventory view HTML
+* ************************************ */
+Util.buildInventoryDetail = async function(data){
+  let detail = "";
+  if(data.length > 0){
+    data.forEach(vehicle => { 
+      detail += '<div class="detailPage">'
+      detail += '<div class="detailImage">'
+      detail +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
+      + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
+      + 'details"><img src="' + vehicle.inv_image
+      +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
+      +' on CSE Motors"></a>'
+      detail += '</div>'
+      detail += '<div class="detailInfo">'
+      detail += '<p>' + '<b>' + vehicle.inv_make + ' ' + vehicle.inv_model + ' Details ' + '</b>' + '</p>'
+      detail += '<p>' + '<b>' + 'Price: $' + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</b>' + '</p>'
+      detail += '<p>' + '<b>' + 'Description:' + ' </b>' + vehicle.inv_description + '</p>'
+      detail += '<p>' + '<b>' + 'Color:' + ' </b>' + vehicle.inv_color + '</p>'
+      detail += '<p>' + '<b>' + 'Miles:' + ' </b>' + new Intl.NumberFormat('en-US').format(vehicle.inv_miles) + '</p>'
+      detail += '</div>'
+      detail += '</div>'
+    })
+  } else { 
+    detail += '<p class="notice">Sorry, the vehicles detail view is not available.</p>'
+  }
+  return detail
 }
 
 /* ****************************************

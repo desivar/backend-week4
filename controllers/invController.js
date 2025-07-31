@@ -39,13 +39,18 @@ invCont.buildByInventoryId = async function (req, res, next) {
 /* *****************************
  *  Build inventory management page
  * **************************** */
+/* *****************************
+ *  Build inventory management page
+ * **************************** */
 invCont.buildInvManagement = async function (req, res, next) {
-  let nav = await utilities.getNav()
-  res.render("./inventory/management", {
-    title: "Inventory Management",
-    nav,
-    errors: null,
-  })
+  let nav = await utilities.getNav()
+  const classificationSelect = await utilities.buildClassificationList()
+  res.render("./inventory/management", {
+    title: "Inventory Management",
+    nav,
+    errors: null,
+    classificationSelect,
+  })
 }
 
 /* *****************************
