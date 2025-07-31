@@ -93,13 +93,15 @@ invCont.processAddNewClassification = async function (req, res, next) {
 }
 
 /* *****************************
- *  Build add inventory page
- * **************************** */
-invCont.buildAddInventory = async function (req, res, next) {
-  let nav = await utilities.getNav()
-  res.render("./inventory/add-vehicle", {
-    title: "Add Inventory",
-    nav,
-    errors: [],
-  })
+* Build inventory management page
+* **************************** */
+invCont.buildInvManagement = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  let classSelect = await utilities.buildClassificationList()
+  res.render("./inventory/management", {
+    title: "Inventory Management",
+    nav,
+    errors: null,
+    classSelect,
+  })
 }
