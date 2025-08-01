@@ -6,8 +6,7 @@ const invModel = require("../models/inventory-model")
  * ************************ */
 Util.buildClassificationList = async function (classification_id = null) {
   let data = await invModel.getClassifications();
-  let classificationList = '<select name="classification_id" id="classificationList">';
-  classificationList += "<option>Choose a Classification</option>";
+  let classificationList = "<option>Choose a Classification</option>";
   if (data && data.rows) {
     data.rows.forEach((row) => {
       classificationList += `<option value="${row.classification_id}"`;
@@ -20,7 +19,6 @@ Util.buildClassificationList = async function (classification_id = null) {
       classificationList += `>${row.classification_name}</option>`;
     });
   }
-  classificationList += "</select>";
   return classificationList;
 };
 
