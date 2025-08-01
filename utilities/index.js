@@ -23,43 +23,42 @@ Util.buildClassificationList = async function (classification_id = null) {
   classificationList += "</select>";
   return classificationList;
 };
+
 /* ****************************************
  * Builds the classification grid
  * **************************************** */
-
 Util.buildClassificationGrid = async function(data){
   let grid
   if(data.length > 0){
     grid = '<ul id="inv-display">'
-    data.forEach(vehicle => { 
+    data.forEach(vehicle => {
       grid += '<li>'
-      grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
-      + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
-      + 'details"><img src="' + vehicle.inv_thumbnail 
-      +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
-      +' on CSE Motors" ></a>'
+      grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id
+      + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model
+      + 'details"><img src="' + vehicle.inv_thumbnail
+      + '" alt="Image of ' + vehicle.inv_make + ' ' + vehicle.inv_model
+      + ' on CSE Motors" /></a>'
       grid += '<div class="namePrice">'
-      grid += '<hr >'
       grid += '<h2>'
-      grid += '<a href="../../inv/detail/' + vehicle.inv_id +'" title="View ' 
-      + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
+      grid += '<a href="../../inv/detail/' + vehicle.inv_id + '" title="View '
+      + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">'
       + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
       grid += '</h2>'
-      grid += '<span>$' 
-      + '<b>' + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + ' </b>' + '</span>'
+      grid += '<span>$' + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>'
       grid += '</div>'
       grid += '</li>'
     })
     grid += '</ul>'
-  } else { 
+  } else {
     grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
   }
   return grid
 }
 
+
 /* ****************************************
-* Get all classification data
-* **************************************** */
+ * Get all classification data
+ * **************************************** */
 Util.getNav = async function () {
     let data = await invModel.getClassifications()
     let nav = '<ul>'
