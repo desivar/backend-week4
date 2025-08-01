@@ -58,13 +58,13 @@ Util.buildClassificationGrid = async function(data){
 }
 
 /* ****************************************
- * Get all classification data
- * **************************************** */
-Util.getNav = async function (req, res, next) {
+* Get all classification data
+* **************************************** */
+Util.getNav = async function () {
     let data = await invModel.getClassifications()
     let nav = '<ul>'
     nav += '<li><a href="/" title="Home page">Home</a></li>'
-    if (data && data.rows) { // <-- This is the fix
+    if (data && data.rows) {
         data.rows.forEach((row) => {
             nav += '<li><a href="/inv/type/' + row.classification_id + '" title="See our ' + row.classification_name + ' vehicles">' + row.classification_name + '</a></li>'
         })
