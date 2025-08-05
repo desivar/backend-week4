@@ -5,8 +5,8 @@
             <ul class="notice">
            <% errors.array().forEach(error => { %>
              <li><%= error.msg %></li>
-          <%  }) %>
-           </ul>
+           <%   }) %>
+            </ul>
           <% } %>
         <form id="account-form" action="/account/login" method="post">
             <label class="account-label" for="account_email">Email:</label>
@@ -21,7 +21,7 @@
                 placeholder="password" required>
             <br>
             <div class="button-div">
-                <button>LOGIN</button>
+                <button type="submit">LOGIN</button>
                 <p class="no-account">No account? <a href="/account/register">Sign-up</a></p>
             </div>
         </form>
