@@ -1,21 +1,8 @@
+<!-- Content Heading -->
 <% if (title) { %>
-  <h1><%= title %></h1>
-<% } else {
-  res.redirect('/')
-  } %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+} %>
 
-<%- messages() %>
-
-<% if (errors) { %>
-  <ul class="notice">
- <% errors.array().forEach(error => { %>
-   <li><%= error.msg %></li>
-<%  }) %>
- </ul>
-<% } %>
-
-<form id="addclass-form" action="/inv/process-add-classification" method="post">
-  <label for="classificationName">Classification Name:</label>
-  <input type="text" id="classificationName" name="classification_name" required>
-  <input type="submit" value="Add Classification">
-</form>
+<%- include('../inventory-partials/add-classification-partial') %>
