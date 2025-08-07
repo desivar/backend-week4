@@ -11,18 +11,14 @@ router.get("/type/:classificationId", utilities.handleErrors(invController.build
 
 // Inventory management
 router.get("/", utilities.handleErrors(invController.buildInvManagement));
-
-// Add new classification page
-router.get("/addclass", utilities.handleErrors(invController.buildAddClassification));
-
-// Add new classification form processing
+router.get("/add-classification", utilities.handleErrors(invController.buildAddClassification));
+// add new classification
 router.post('/process-add-classification',
     invValidate.classificationRules(),
     utilities.handleErrors(invValidate.checkClassification),
-    utilities.handleErrors(invController.processAddNewClassification));
-
-// Add new inventory page
-router.get("/addvehicle", utilities.handleErrors(invController.buildAddInventory));
+    utilities.handleErrors(invController.processAddNewClassification))
+//router.get("/add-classification", (req, res) => {res.send("connected")});
+router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory));
 
 // Route to build 500 error page
 router.get("/err", utilities.handleErrors(errorController.build500Page));
